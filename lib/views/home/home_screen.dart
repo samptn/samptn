@@ -1,211 +1,165 @@
+
+
 import 'package:flutter/material.dart';
-import '/views/widgets/skills_components.dart';
 
+import '../../models/app_model.dart';
 import '../../styles/font_style.dart';
+import 'portfolio_app.dart';
 
-class ResumeHeaderWidget extends StatelessWidget {
-  const ResumeHeaderWidget({super.key});
+var myApps = [
+  AppModel(
+    appName: "Portfolio",
+    assetImagePath: "assets/icons/portfolio-96.png",
+    packageName: "com.sabir.portfolio",
+  ),
+  AppModel(
+    appName: "Github",
+    assetImagePath: "assets/icons/github.png",
+  ),
+  AppModel(
+    appName: "Twitter",
+    assetImagePath: "assets/icons/twitter.png",
+  ),
+  AppModel(
+    appName: "LinkedIN",
+    assetImagePath: "assets/icons/linkedin.png",
+  ),
+  AppModel(
+    appName: "WhatsApp",
+    assetImagePath: "assets/icons/whatsapp.png",
+  ),
+  AppModel(
+    appName: "Instagram",
+    assetImagePath: "assets/icons/instagram.png",
+  ),
+  AppModel(
+    appName: "Settings",
+    assetImagePath: "assets/icons/setting.png",
+  ),
+];
+
+class TestScreen extends StatelessWidget {
+  const TestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Name and Role
-          Row(
-            children: [
-              Text(
-                "John Doe",
-                style: AppFonts.nunito(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                "| Software Developer",
-                style: AppFonts.nunito(
-                  fontSize: 22,
-                  color: Colors.grey[600],
-                ),
-              ),
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: Container(
+        width: width,
+        height: height,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(0),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 234, 85, 135),
+              Color.fromARGB(255, 248, 0, 83),
             ],
           ),
-          const SizedBox(height: 8),
-
-          // Contact Information
-          Text(
-            "123 Main Street, City, Country",
-            style: AppFonts.nunito(
-              color: Colors.grey[600],
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            "Email: johndoe@example.com",
-            style: AppFonts.nunito(
-              color: Colors.grey[600],
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            "Phone: (123) 456-7890",
-            style: AppFonts.nunito(
-              color: Colors.grey[600],
-              fontSize: 16,
-            ),
-          ),
-          const SizedBox(height: 16),
-
-          // Social Media Links
-          Row(
-            children: [
-              _buildSocialIcon(
-                'assets/icons/github.png',
-                'https://github.com/johndoe',
+        ),
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: SafeArea(
+                child: Wrap(
+                  runSpacing: 16,
+                  spacing: 16,
+                  children: [
+                    ...List.generate(
+                      myApps.length,
+                      (index) => AppIconWidget(
+                        appModel: myApps[index],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(width: 16),
-              _buildSocialIcon(
-                'assets/icons/linkedin.png',
-                'https://linkedin.com/in/johndoe',
-              ),
-              const SizedBox(width: 16),
-              _buildSocialIcon(
-                'assets/icons/twitter.png',
-                'https://twitter.com/johndoe',
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Helper method for social icons
-  Widget _buildSocialIcon(String assetPath, String url) {
-    return GestureDetector(
-      onTap: () {},
-      child: Image.asset(
-        assetPath,
-        width: 24,
-        height: 24,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class ExperienceWidget extends StatelessWidget {
-  const ExperienceWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Tech Solutions Inc.",
-          style: AppFonts.nunito(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          "Flutter Developer",
-          style: AppFonts.nunito(
-            fontSize: 18,
-            color: Colors.blueGrey,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          "Jan 2021 - Dec 2023",
-          style: AppFonts.nunito(color: Colors.grey),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.blue[50],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            "Developed cross-platform applications using Flutter, ensuring high performance and responsiveness.",
-            style: AppFonts.nunito(
-              fontSize: 16,
-              color: Colors.black,
-            ),
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          "CodeCrafters Ltd.",
-          style: AppFonts.nunito(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          "Junior Developer",
-          style: AppFonts.nunito(
-            fontSize: 18,
-            color: Colors.blueGrey,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          "Jan 2019 - Dec 2020",
-          style: AppFonts.nunito(
-            color: Colors.grey,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.blue[50],
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            "Assisted in building mobile applications, fixing bugs, and maintaining code quality.",
-            style: AppFonts.nunito(
-              fontSize: 16,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class PortfolioApp extends StatelessWidget {
-  final String? packageName;
-  const PortfolioApp({
+class AppIconWidget extends StatelessWidget {
+  final AppModel appModel;
+  const AppIconWidget({
     super.key,
-    this.packageName,
+    required this.appModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        const ResumeHeaderWidget(),
-        const SkillsWidget(),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              const ExperienceWidget(),
-              Container(),
-            ],
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white.withOpacity(0.4),
+          ),
+          child: SizedBox(
+            width: 32,
+            height: 32,
+            child: GestureDetector(
+              onTap: () {
+                if (appModel.packageName == "com.sabir.portfolio") {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        child: const PortfolioApp(),
+                      );
+                    },
+                  );
+                } else {
+                  //This is not your phone app. Please check my portfolio
+                  //snackbar
+                }
+              },
+              child: Column(
+                children: [
+                  if (appModel.assetImagePath != null)
+                    Image.asset(
+                      appModel.assetImagePath!,
+                    )
+                  // else if (appModel.assetImagePath != null)
+                  //   Image.network(
+                  //     appIconImageUrl!,
+                  //   )
+                  else if (appModel.appName != null &&
+                      appModel.appName!.isNotEmpty)
+                    Text(
+                      appModel.appName![0],
+                      style: AppFonts.nunito(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          appModel.appName ?? "",
+          style: AppFonts.nunito(
+            color: Colors.white,
+            fontSize: 12,
           ),
         ),
       ],
