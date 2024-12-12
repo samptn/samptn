@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/models/resume_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/portfolio_app_bloc.dart';
+import '/models/resume_model.dart';
 import '../../widgets/experience_widget.dart';
 import '../../widgets/resume_header_widget.dart';
 import '/views/widgets/project_widget.dart';
 import '/views/widgets/qualification_widget.dart';
 import '/views/widgets/skills_components.dart';
 
-class PortfolioApp extends StatelessWidget {
+class PortfolioApp extends StatefulWidget {
   final String? packageName;
   const PortfolioApp({
     super.key,
@@ -14,11 +16,33 @@ class PortfolioApp extends StatelessWidget {
   });
 
   @override
+  State<PortfolioApp> createState() => _PortfolioAppState();
+}
+
+class _PortfolioAppState extends State<PortfolioApp> {
+
+
+@override
+  void initState() {
+   
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: const [
-          ResumeWidget(),
+        children: [
+          BlocBuilder<PortfolioAppBloc, PortfolioAppState>(
+            builder: (context, state) {
+              if (state is ResumeState) {
+                return ResumeWidget(
+                  resume: state.resume,
+                );
+              }
+              return Container();
+            },
+          ),
         ],
       ),
     );
@@ -26,7 +50,8 @@ class PortfolioApp extends StatelessWidget {
 }
 
 class ResumeWidget extends StatelessWidget {
-  const ResumeWidget({super.key});
+  final Resume resume;
+  const ResumeWidget({super.key, required this.resume});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +67,9 @@ class ResumeWidget extends StatelessWidget {
         QualificationWidget(
           qualifications: resume.qualifications,
         ),
-         ExperienceWidget(experiences: resume.experiences,),
+        ExperienceWidget(
+          experiences: resume.experiences,
+        ),
         ProjectsWidget(projects: myProjects)
       ],
     );

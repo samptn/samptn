@@ -30,45 +30,48 @@ class ExperienceWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...List.generate(experiences.length, (index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        experiences[index].title,
-                        style: AppFonts.nunito(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                ...List.generate(
+                  experiences.length,
+                  (index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          experiences[index].title,
+                          style: AppFonts.nunito(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        experiences[index].company,
-                        style: AppFonts.nunito(
-                          fontSize: 16,
-                          color: Colors.grey[600],
+                        const SizedBox(height: 4),
+                        Text(
+                          experiences[index].company,
+                          style: AppFonts.nunito(
+                            fontSize: 16,
+                            color: Colors.grey[600],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        experiences[index].duration,
-                        style: AppFonts.nunito(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                        const SizedBox(height: 4),
+                        Text(
+                          experiences[index].duration,
+                          style: AppFonts.nunito(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        experiences[index].description,
-                        style: AppFonts.nunito(
-                          fontSize: 14,
-                          color: Colors.grey[800],
+                        const SizedBox(height: 8),
+                        Text(
+                          experiences[index].description,
+                          style: AppFonts.nunito(
+                            fontSize: 14,
+                            color: Colors.grey[800],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  );
-                })
+                        const SizedBox(height: 16),
+                      ],
+                    );
+                  },
+                ),
               ],
             ),
           ),
