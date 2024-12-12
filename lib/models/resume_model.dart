@@ -1,4 +1,16 @@
 class Resume {
+  BasicInfo basicInfo;
+  List<SkillCategory> skills;
+  List<Qualification> qualifications;
+
+  Resume({
+    required this.skills,
+    required this.qualifications,
+    required this.basicInfo,
+  });
+}
+
+class BasicInfo {
   String name;
   String role;
   String email;
@@ -6,10 +18,11 @@ class Resume {
   String address;
   String profilePicture;
   List<SocialLink> socialLinks;
-  List<SkillCategory> skills;
-  List<Qualification> qualifications;
+  //designation
 
-  Resume({
+  String designation;
+
+  BasicInfo({
     required this.name,
     required this.role,
     required this.email,
@@ -17,8 +30,7 @@ class Resume {
     required this.address,
     required this.profilePicture,
     required this.socialLinks,
-    required this.skills,
-    required this.qualifications,
+    required this.designation,
   });
 }
 
@@ -26,14 +38,20 @@ class SocialLink {
   String platform;
   String url;
 
-  SocialLink({required this.platform, required this.url});
+  SocialLink({
+    required this.platform,
+    required this.url,
+  });
 }
 
 class SkillCategory {
   String category;
   List<String> skills;
 
-  SkillCategory({required this.category, required this.skills});
+  SkillCategory({
+    required this.category,
+    required this.skills,
+  });
 }
 
 class Qualification {
@@ -51,26 +69,30 @@ class Qualification {
 }
 
 Resume resume = Resume(
-  name: "John Doe",
-  role: "Software Developer",
-  email: "johndoe@example.com",
-  phone: "(123) 456-7890",
-  address: "123 Main Street, City, Country",
-  profilePicture: "assets/profile.jpg", // Add path for the profile image
-  socialLinks: [
-    SocialLink(
-      platform: "GitHub",
-      url: "https://github.com/johndoe",
-    ),
-    SocialLink(
-      platform: "LinkedIn",
-      url: "https://linkedin.com/in/johndoe",
-    ),
-    SocialLink(
-      platform: "Twitter",
-      url: "https://twitter.com/johndoe",
-    ),
-  ],
+  basicInfo: BasicInfo(
+    name: "John Doe",
+    role: "Software Developer",
+    email: "johndoe@example.com",
+    phone: "(123) 456-7890",
+    address: "123 Main Street, City, Country",
+    designation: "Flutter Developer",
+    profilePicture: "assets/profile.jpg",
+    socialLinks: [
+      SocialLink(
+        platform: "GitHub",
+        url: "https://github.com/johndoe",
+      ),
+      SocialLink(
+        platform: "LinkedIn",
+        url: "https://linkedin.com/in/johndoe",
+      ),
+      SocialLink(
+        platform: "Twitter",
+        url: "https://twitter.com/johndoe",
+      ),
+    ],
+  ), 
+
   skills: [
     SkillCategory(
       category: "Programming Languages",

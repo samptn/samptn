@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '/models/app_model.dart';
-import '/styles/font_style.dart';
 import '/views/home/home_screen.dart';
 
 void main() {
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const TestScreen(),
+      home: const MobileHomeScreen(),
     );
   }
 }
