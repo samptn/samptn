@@ -1,64 +1,98 @@
 import 'package:flutter/material.dart';
+import '/views/widgets/skills_components.dart';
 
 import '../../styles/font_style.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class ResumeHeaderWidget extends StatelessWidget {
+  const ResumeHeaderWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(16.0),
-        margin: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.0),
-          border: Border.all(
-            color: Colors.deepPurple,
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const ExperienceWidget(),
-            Align(
-              alignment: Alignment.center,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: () {},
-                child: Text(
-                  'Button',
-                  style: AppFonts.nunito(
-                    color: Colors.white,
-                  ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Name and Role
+          Row(
+            children: [
+              Text(
+                "John Doe",
+                style: AppFonts.nunito(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(width: 8),
+              Text(
+                "| Software Developer",
+                style: AppFonts.nunito(
+                  fontSize: 22,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+
+          // Contact Information
+          Text(
+            "123 Main Street, City, Country",
+            style: AppFonts.nunito(
+              color: Colors.grey[600],
+              fontSize: 16,
             ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "Email: johndoe@example.com",
+            style: AppFonts.nunito(
+              color: Colors.grey[600],
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            "Phone: (123) 456-7890",
+            style: AppFonts.nunito(
+              color: Colors.grey[600],
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Social Media Links
+          Row(
+            children: [
+              _buildSocialIcon(
+                'assets/icons/github.png',
+                'https://github.com/johndoe',
+              ),
+              const SizedBox(width: 16),
+              _buildSocialIcon(
+                'assets/icons/linkedin.png',
+                'https://linkedin.com/in/johndoe',
+              ),
+              const SizedBox(width: 16),
+              _buildSocialIcon(
+                'assets/icons/twitter.png',
+                'https://twitter.com/johndoe',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper method for social icons
+  Widget _buildSocialIcon(String assetPath, String url) {
+    return GestureDetector(
+      onTap: () {},
+      child: Image.asset(
+        assetPath,
+        width: 24,
+        height: 24,
       ),
     );
   }
@@ -141,7 +175,37 @@ class ExperienceWidget extends StatelessWidget {
           ),
           child: Text(
             "Assisted in building mobile applications, fixing bugs, and maintaining code quality.",
-            style: AppFonts.nunito(fontSize: 16, color: Colors.black),
+            style: AppFonts.nunito(
+              fontSize: 16,
+              color: Colors.black,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PortfolioApp extends StatelessWidget {
+  final String? packageName;
+  const PortfolioApp({
+    super.key,
+    this.packageName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        const ResumeHeaderWidget(),
+        const SkillsWidget(),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const ExperienceWidget(),
+              Container(),
+            ],
           ),
         ),
       ],

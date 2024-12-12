@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/styles/font_style.dart';
+import '/models/app_model.dart';
+import '/styles/font_style.dart';
+import '/views/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +25,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
+var myApps = [
+  AppModel(
+    appName: "Portfolio",
+    assetImagePath: "assets/icons/portfolio-96.png",
+  ),
+  //Github,
+  AppModel(
+    appName: "Github",
+    assetImagePath: "assets/icons/github.png",
+  ),
+  AppModel(
+    appName: "Twitter",
+    assetImagePath: "assets/icons/twitter.png",
+  ),
+  AppModel(
+    appName: "LinkedIN",
+    assetImagePath: "assets/icons/linkedin.png",
+  ),
+  // AppModel(
+  //   appName: "Create Your's",
+  //   assetImagePath: "assets/icons/add.gif",
+  // ),
+];
+
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
 
@@ -35,6 +61,7 @@ class TestScreen extends StatelessWidget {
       body: Container(
         width: width,
         height: height,
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(0),
           gradient: const LinearGradient(
@@ -49,16 +76,17 @@ class TestScreen extends StatelessWidget {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.topRight,
+              alignment: Alignment.center,
               child: SafeArea(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  runSpacing: 16,
+                  spacing: 16,
                   children: [
                     ...List.generate(
-                      3,
-                      (index) => const AppIconWidget(
-                        appAssetPath: "assets/icons/portfolio-96.png",
-                        appName: "Portfolio",
+                      myApps.length,
+                      (index) => AppIconWidget(
+                        appAssetPath: myApps[index].assetImagePath,
+                        appName: myApps[index].appName,
                       ),
                     ),
                   ],
@@ -98,28 +126,45 @@ class AppIconWidget extends StatelessWidget {
           child: SizedBox(
             width: 32,
             height: 32,
-            child: Column(
-              children: [
-                if (appAssetPath != null)
-                  Image.asset(
-                    appAssetPath!,
-                  )
-                else if (appName != null)
-                  Text(
-                    appName!,
-                    style: AppFonts.nunito(
-                      color: Colors.white,
-                      fontSize: 12,
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(0),
+                      ),
+                      child: const PortfolioApp(),
+                    );
+                  },
+                );
+              },
+              child: Column(
+                children: [
+                  if (appAssetPath != null)
+                    Image.asset(
+                      appAssetPath!,
+                    )
+                  else if (appIconImageUrl != null)
+                    Image.network(
+                      appIconImageUrl!,
+                    )
+                  else if (appName != null && appName!.isNotEmpty)
+                    Text(
+                      appName![0],
+                      style: AppFonts.nunito(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
                     ),
-                  )
-                else if (appIconImageUrl != null)
-                  Image.network(
-                    appIconImageUrl!,
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
+        const SizedBox(height: 4),
         Text(
           appName ?? "",
           style: AppFonts.nunito(
