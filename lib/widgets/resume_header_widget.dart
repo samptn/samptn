@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/models/resume_model.dart';
+import '/models/resume_model.dart';
 
 import '../styles/font_style.dart';
 

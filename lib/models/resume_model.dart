@@ -1,13 +1,35 @@
+import 'package:flutter_application_2/views/widgets/project_widget.dart';
+
 class Resume {
   BasicInfo basicInfo;
   List<SkillCategory> skills;
   List<Qualification> qualifications;
+  final List<Project> projects;
+  final List<Experience> experiences;
 
   Resume({
     required this.skills,
     required this.qualifications,
     required this.basicInfo,
+    required this.projects,
+    required this.experiences, 
   });
+}
+
+class Experience {
+  String title;
+  String company;
+  String duration;
+  String description;
+
+  Experience({
+    required this.title,
+    required this.company,
+    required this.duration,
+    required this.description,
+  });
+
+  
 }
 
 class BasicInfo {
@@ -69,6 +91,7 @@ class Qualification {
 }
 
 Resume resume = Resume(
+
   basicInfo: BasicInfo(
     name: "John Doe",
     role: "Software Developer",
@@ -91,8 +114,7 @@ Resume resume = Resume(
         url: "https://twitter.com/johndoe",
       ),
     ],
-  ), 
-
+  ),
   skills: [
     SkillCategory(
       category: "Programming Languages",
@@ -136,5 +158,57 @@ Resume resume = Resume(
       description:
           "Focused on advanced algorithms, machine learning, and cloud computing.",
     ),
+    Qualification(
+      degree: "Master's in Software Engineering",
+      institution: "ABC University",
+      duration: "2020 - 2022",
+      description:
+          "Focused on advanced algorithms, machine learning, and cloud computing.",
+    ),
+    Qualification(
+      degree: "Master's in Software Engineering",
+      institution: "ABC University",
+      duration: "2020 - 2022",
+      description:
+          "Focused on advanced algorithms, machine learning, and cloud computing.",
+    ),
   ],
+  projects: [
+    Project(
+      title: "Flutter Mobile App",
+      description: "A mobile app built with Flutter to manage tasks.",
+      technologies: ["Flutter", "Dart", "SQLite"],
+      link: "https://github.com/johndoe/flutter_task_manager",
+    ),
+    Project(
+      title: "Personal Portfolio Website",
+      description: "A portfolio website to showcase my work and skills.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      link: "https://johndoe.dev",
+    ),
+    Project(
+      title: "E-commerce Backend",
+      description:
+          "Backend for an e-commerce website built with Node.js and MongoDB.",
+      technologies: ["Node.js", "Express", "MongoDB"],
+      link: "https://github.com/johndoe/ecommerce-backend",
+    ),
+  ],
+  experiences: [
+    Experience(
+      title: "Flutter Developer",
+      company: "Tech Solutions Inc.",
+      duration: "Jan 2021 - Dec 2023",
+      description:
+          "Developed cross-platform applications using Flutter, ensuring high performance and responsiveness.",
+    ),
+    Experience(
+      title: "Junior Developer",
+      company: "CodeCrafters Ltd.",
+      duration: "Jan 2019 - Dec 2020",
+      description:
+          "Assisted in building mobile applications, fixing bugs, and maintaining code quality.",
+    ),
+
+  ]
 );

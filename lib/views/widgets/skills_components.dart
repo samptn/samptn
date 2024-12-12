@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../models/resume_model.dart';
 import '../../styles/font_style.dart';
 
 class SkillsWidget extends StatelessWidget {
-  const SkillsWidget({super.key});
+  final List<SkillCategory> skills;
+  const SkillsWidget({super.key, required this.skills});
 
   @override
   Widget build(BuildContext context) {
@@ -21,49 +23,15 @@ class SkillsWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-
-          // Technical Skills
-          _buildSkillCategory(
-            "Programming Languages",
-            [
-              _buildSkillChip("Flutter"),
-              _buildSkillChip("Dart"),
-              _buildSkillChip("Kotlin"),
-              _buildSkillChip("Java"),
-            ],
-          ),
+          // Iterate through the skill categories and build the UI
+          for (var skillCategory in skills)
+            _buildSkillCategory(
+              skillCategory.category,
+              skillCategory.skills
+                  .map((skill) => _buildSkillChip(skill))
+                  .toList(),
+            ),
           const SizedBox(height: 16),
-
-          _buildSkillCategory(
-            "Web Technologies",
-            [
-              _buildSkillChip("HTML"),
-              _buildSkillChip("CSS"),
-              _buildSkillChip("JavaScript"),
-              _buildSkillChip("React"),
-            ],
-          ),
-          const SizedBox(height: 16),
-
-          _buildSkillCategory(
-            "Databases",
-            [
-              _buildSkillChip("MySQL"),
-              _buildSkillChip("PostgreSQL"),
-              _buildSkillChip("MongoDB"),
-            ],
-          ),
-          const SizedBox(height: 16),
-
-          // Soft Skills
-          _buildSkillCategory(
-            "Soft Skills",
-            [
-              _buildSkillChip("Teamwork"),
-              _buildSkillChip("Problem-solving"),
-              _buildSkillChip("Communication"),
-            ],
-          ),
         ],
       ),
     );

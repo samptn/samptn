@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../models/resume_model.dart';
 import '../../styles/font_style.dart';
 
 class QualificationWidget extends StatelessWidget {
-  const QualificationWidget({super.key});
+  final List<Qualification> qualifications;
+  const QualificationWidget({super.key, required this.qualifications});
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +23,16 @@ class QualificationWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Timeline
           Column(
             children: [
-              _buildTimelineItem(
-                "Bachelor's in Computer Science",
-                "XYZ University, 2016 - 2020",
-                "Graduated with Honors. Specialized in software development and data structures.",
-              ),
-              _buildTimelineItem(
-                "Master's in Software Engineering",
-                "ABC University, 2020 - 2022",
-                "Focused on advanced algorithms, machine learning, and cloud computing.",
-              ),
-              _buildTimelineItem(
-                "Flutter Developer Certification",
-                "Online Course, 2022",
-                "Completed a professional Flutter certification program, building real-world applications.",
-              ),
+              for (var qualification in resume.qualifications)
+                _buildTimelineItem(
+                  qualification.degree,
+                  qualification.institution,
+                  qualification.description,
+                ),
             ],
           ),
         ],
@@ -72,7 +65,7 @@ class QualificationWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(width: 16),
-        
+
         // Qualification details
         Expanded(
           child: Column(

@@ -36,9 +36,13 @@ class ResumeWidget extends StatelessWidget {
         ResumeHeaderWidget(
           basicInfo: resume.basicInfo,
         ),
-        const SkillsWidget(),
-        const QualificationWidget(),
-        const ExperienceWidget(),
+        SkillsWidget(
+          skills: resume.skills,
+        ),
+        QualificationWidget(
+          qualifications: resume.qualifications,
+        ),
+         ExperienceWidget(experiences: resume.experiences,),
         ProjectsWidget(projects: myProjects)
       ],
     );

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../models/resume_model.dart';
 import '../styles/font_style.dart';
 
 class ExperienceWidget extends StatelessWidget {
-  const ExperienceWidget({super.key});
+  final List<Experience> experiences;
+  const ExperienceWidget({
+    super.key,
+    required this.experiences,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,83 +30,45 @@ class ExperienceWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Tech Solutions Inc.",
-                  style: AppFonts.nunito(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Flutter Developer",
-                  style: AppFonts.nunito(
-                    fontSize: 18,
-                    color: Colors.blueGrey,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  "Jan 2021 - Dec 2023",
-                  style: AppFonts.nunito(
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[50],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    "Developed cross-platform applications using Flutter, ensuring high performance and responsiveness.",
-                    style: AppFonts.nunito(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  "CodeCrafters Ltd.",
-                  style: AppFonts.nunito(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  "Junior Developer",
-                  style: AppFonts.nunito(
-                    fontSize: 18,
-                    color: Colors.blueGrey,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  "Jan 2019 - Dec 2020",
-                  style: AppFonts.nunito(
-                    color: Colors.grey,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.blue[50],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    "Assisted in building mobile applications, fixing bugs, and maintaining code quality.",
-                    style: AppFonts.nunito(
-                      fontSize: 16,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+                ...List.generate(experiences.length, (index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        experiences[index].title,
+                        style: AppFonts.nunito(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        experiences[index].company,
+                        style: AppFonts.nunito(
+                          fontSize: 16,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        experiences[index].duration,
+                        style: AppFonts.nunito(
+                          fontSize: 14,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        experiences[index].description,
+                        style: AppFonts.nunito(
+                          fontSize: 14,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  );
+                })
               ],
             ),
           ),
